@@ -1,4 +1,6 @@
+
 {
+    "homepage": "https://gerard7505.github.io/library",
     "devDependencies": {
         "@babel/core": "^7.17.0",
         "@babel/preset-env": "^7.26.9",
