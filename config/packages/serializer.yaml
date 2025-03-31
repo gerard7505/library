@@ -1,0 +1,5 @@
+# config/packages/serializer.yaml
+framework:
+    serializer:
+        default_context:
+            date_format: 'Y-m-d H:i:s'  # Establece el formato que prefieras

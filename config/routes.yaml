@@ -1,0 +1,17 @@
+# config/routes.yaml
+# This file is automatically included by the framework.
+
+# Importing routes from the controller directory (default path)
+controllers:
+    resource: '../src/Controller/'
+    type: annotation
+
+import_books:
+    path: /import_books
+    controller: App\Controller\YourController::importBooks
+
+
+api_login:
+    path: /api/login
+    controller: App\Controller\AuthController::login
+    methods: [POST]

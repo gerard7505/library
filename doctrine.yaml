@@ -1,0 +1,10 @@
+doctrine:
+    dbal:
+        driver: 'pdo_mysql'
+        url: '%env(DATABASE_URL)%'
+        server_version: '8.0' # Cambia esto a tu versión de MySQL
+        charset: 'utf8mb4'
+        # Opcional: Si quieres forzar el cambio de colación:
+        # connection_options:
+        #   collate: utf8mb4_unicode_ci
+

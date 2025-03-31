@@ -1,0 +1,33 @@
+services:
+    # Registrar controladores automáticamente con inyección de dependencias
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+        public: true    
+
+    # Otros servicios
+    App\Service\BookImporter:
+        arguments:
+            $someDependency: '@some_service'
+
+    # Servicios generales
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    _defaults:
+        autowire: true      # Inyección automática de dependencias
+        autoconfigure: true # Auto-registrar servicios como comandos, eventos, etc.
+
+    # Definición específica para AuthController
+    App\Controller\AuthController:
+        public: true
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+            $passwordHasher: '@security.password_hasher'
+            $jwtManager: '@lexik_jwt_authentication.jwt_manager'
+        tags: ['controller.service_arguments']
+

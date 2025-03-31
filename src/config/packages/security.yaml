@@ -1,0 +1,27 @@
+# config/packages/security.yaml
+
+security:
+    # Codificadores de contraseñas
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
+    # Proveedores de usuarios
+    providers:
+        database_users:
+            entity:
+                class: App\Entity\User
+                property: username
+
+    # Firewalls (Protección de rutas de la API)
+    firewalls:
+        api:
+            pattern: ^/api/
+            stateless: true # No usamos sesiones, todo es sin estado
+            http_basic: ~ # Autenticación básica para las rutas API
+
+    # Control de acceso
+    access_control:
+        - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/, roles: ROLE_USER }

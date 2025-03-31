@@ -1,0 +1,7 @@
+services:
+    # Autowire and autoconfigure services
+    App\Service\BookImporter: ~
+    
+    # Parámetros para el directorio de imágenes (puedes omitirlo si no usas imágenes)
+    parameters:
+        images_directory: '%kernel.project_dir%/public/uploads/images'

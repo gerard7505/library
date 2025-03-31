@@ -1,0 +1,32 @@
+# config/packages/security.yaml
+security:
+    enable_authenticator_manager: true
+    password_hashers:
+        App\Entity\User: 'auto'
+
+    firewalls:
+        # Rutas para la API de libros
+        api_books:
+            pattern: ^/api/books
+            security: false  # Las rutas para libros no necesitan autenticación
+
+        # Rutas para el registro de usuarios
+        api_register:
+            pattern: ^/api/register
+            security: false  # No necesita autenticación para el registro de usuarios
+
+    # Definir las reglas de acceso para las rutas
+    access_control:
+        # Acceso público a la ruta de registro (sin autenticación)
+        - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # Acceso público a las rutas de libros (sin autenticación)
+        - { path: ^/api/books, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    providers:
+        doctrine:
+            entity:
+                class: App\Entity\User
+                property: email  # Asegúrate de que la propiedad de autenticación sea 'email'
+
+    # Otros detalles de seguridad si es necesario...
+

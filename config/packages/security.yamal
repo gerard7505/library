@@ -1,0 +1,43 @@
+# config/packages/security.yaml
+security:
+    # Encabezado de configuración de seguridad
+    enable_authenticator_manager: true
+
+    # Definir las reglas de acceso
+    firewalls:
+        # Configuración para el firewall de la API
+        api:
+            pattern: ^/api/
+            # Si tienes autenticación básica o con JWT, aquí puedes configurarlo
+            # Para pruebas simples, podemos usar el acceso a los endpoints sin autenticación
+            # Si necesitas seguridad, puedes usar autenticación HTTP básica o JWT.
+            # Ejemplo de autenticación básica:
+            http_basic: ~
+            # Si utilizas un sistema de tokens (por ejemplo JWT), puedes configurar algo como esto:
+            # jwt: ~
+
+            # O si no necesitas ninguna autenticación para los endpoints públicos:
+            # anonymous: true
+
+    # Aseguramos que la configuración para roles sea correcta
+    access_control:
+        # Solo usuarios autenticados pueden acceder a la API
+        - { path: ^/api, roles: ROLE_USER }
+
+    # Configuración de autenticación, por ejemplo, si usas JWT o autenticación básica
+    # Esto es solo un ejemplo para autenticación HTTP básica.
+    # Puedes añadir otros sistemas como JWT si es necesario.
+
+    # Configuración de usuarios para la autenticación básica
+    providers:
+        in_memory: # Usa usuarios en memoria (útil para pruebas)
+            memory:
+                users:
+                    user: { password: 'password', roles: ['ROLE_USER'] }
+
+    # Manejo de la autenticación de sesión (si fuera necesario para tu caso)
+    firewalls:
+        # Define el acceso al sistema de autenticación
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false

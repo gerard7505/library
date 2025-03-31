@@ -1,0 +1,9 @@
+nelmio_cors:
+    defaults:
+        allow_credentials: true
+        allow_origin: ['http://localhost:3000']  # Permite solicitudes desde cualquier origen
+        allow_headers: ['Content-Type', 'Authorization', 'X-Requested-With']
+        allow_methods: ['GET', 'POST', 'DELETE', 'OPTIONS', 'PUT']  # Métodos permitidos
+        max_age: 3600  # Tiempo en segundos para cachear las opciones
+    paths:
+        '^/api/': ~  # Solo habilita CORS para las rutas que comienzan con /api/
