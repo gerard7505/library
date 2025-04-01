@@ -1,0 +1,3 @@
+[submodule "auth-app"]
+	path = auth-app
+	url = https://github.com/gerard7505/library.git
